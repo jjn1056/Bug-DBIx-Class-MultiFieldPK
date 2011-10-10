@@ -26,13 +26,22 @@ my @images =  (
 
 my ($empire, $car, $dogs) = $schema->populate(Image => \@images);
 
+ok $schema->resultset('UserImageDownload')->create({fk_user_id=>2, fk_image_id=>13}),
+  'vanessa has a dog picture';
+
+ok $schema->resultset('UserImageDownload')->create({user=>$vincent, image=>$dogs}),
+  'vincent has a dog picture';
+
+ok $john->add_to_user_images_downloads_rs({image=>$empire}),
+  'has empire';
+
 ok $john->add_to_downloaded_images($dogs),
   'added dogs';
 
 ok $john->add_to_downloaded_images($car),
   'added car';
 
-is $schema->resultset('UserImageDownload')->count, 2,
+is $schema->resultset('UserImageDownload')->count, 5,
   'correct downloads count';
 
 done_testing;

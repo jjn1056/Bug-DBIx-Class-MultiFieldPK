@@ -27,9 +27,6 @@ __PACKAGE__->belongs_to(
  __PACKAGE__->belongs_to(
   image => 'Bug::DBIx::Class::MultiFieldPK::Schema::Result::Image',
   {'foreign.image_id', => 'self.fk_image_id'},
-  );
-
-    
+);
+  
 1;
-
-
