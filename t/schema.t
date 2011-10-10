@@ -2,8 +2,10 @@ use Test::Most;
 use File::Spec;
 use Bug::DBIx::Class::MultiFieldPK::Schema;
 
+my ($dns, $user, $pass) = ($ENV{TEST_DNS}||"DBI:SQLite::memory:", $ENV{TEST_USER}||'', $ENV{TEST_PASSWORD}||'');
+
 (my $schema = Bug::DBIx::Class::MultiFieldPK::Schema
-  ->connect("DBI:SQLite::memory:", '', ''))
+  ->connect($dns, $user, $pass))
   ->deploy({}, File::Spec->catdir(qw/. share/));
 
 my $users = [
