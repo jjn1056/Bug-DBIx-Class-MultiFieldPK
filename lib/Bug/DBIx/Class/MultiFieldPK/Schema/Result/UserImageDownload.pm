@@ -5,7 +5,7 @@ __PACKAGE__->table('user_image_downloaded');
 
 __PACKAGE__->add_columns(
   downloaded_id => {
-	data_type => 'int', 
+	data_type => 'int',
     is_auto_increment => 1,
   },
   fk_user_id => { data_type => 'int' },
@@ -28,5 +28,5 @@ __PACKAGE__->belongs_to(
   image => 'Bug::DBIx::Class::MultiFieldPK::Schema::Result::Image',
   {'foreign.image_id', => 'self.fk_image_id'},
 );
-  
+
 1;
